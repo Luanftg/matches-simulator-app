@@ -1,6 +1,7 @@
 package me.dio.simulator.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -13,8 +14,13 @@ import java.util.List;
 
 import me.dio.simulator.databinding.MatchItemBinding;
 import me.dio.simulator.domain.Match;
+import me.dio.simulator.ui.DetailActivity;
 
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHolder> {
+
+    public List<Match> getMatches() {
+        return matches;
+    }
 
     private List<Match> matches;
 
@@ -32,13 +38,25 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull MatchesAdapter.ViewHolder holder, int position) {
         Match match = matches.get(position);
-
-        //Adapta os dados da partida (recuperada da API) para o nosso layout.
         Context context = holder.itemView.getContext();
+        //Adapta os dados da partida (recuperada da API) para o nosso layout.
         Glide.with(context).load(match.getHomeTeam().getImagem()).circleCrop().into(holder.binding.ivHomeTeam);
         holder.binding.tvHomeTeamName.setText(match.getHomeTeam().getName());
+        if(match.getHomeTeam().getScore() != null) {
+            holder.binding.tvHomeTeamScore.setText(String.valueOf(match.getHomeTeam().getScore()));
+        }
         Glide.with(context).load(match.getAwayTeam().getImagem()).circleCrop().into(holder.binding.ivAwayTeam);
         holder.binding.ivAwayTeamName.setText(match.getAwayTeam().getName());
+        if(match.getAwayTeam().getScore() != null) {
+            holder.binding.tvAwayTeamScore.setText(String.valueOf(match.getAwayTeam().getScore()));
+        }
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra(DetailActivity.Extras.MATCH , match);
+            context.startActivity(intent);
+        });
+
     }
 
     @Override
