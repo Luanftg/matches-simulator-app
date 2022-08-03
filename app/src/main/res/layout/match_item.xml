@@ -42,7 +42,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tvVersus"
             app:layout_constraintStart_toEndOf="@+id/ivHomeTeam"
             app:layout_constraintTop_toTopOf="@+id/ivHomeTeam"
-            tools:text="2" />
+            tools:text="99" />
 
         <TextView
             android:id="@+id/tvVersus"
@@ -84,6 +84,6 @@
             app:layout_constraintEnd_toStartOf="@+id/ivAwayTeam"
             app:layout_constraintStart_toEndOf="@+id/tvVersus"
             app:layout_constraintTop_toTopOf="@+id/ivAwayTeam"
-            tools:text="1" />
+            tools:text="99" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -1,6 +1,12 @@
 package me.dio.simulator.domain
 
-data class Team (
-    val name: String,
+import com.google.gson.annotations.SerializedName
 
+data class Team (
+    @SerializedName("nome")
+    val name: String,
+    @SerializedName("forca")
+    val stars: Int,
+    @SerializedName("imagem")
+    val imagem: String
 )
