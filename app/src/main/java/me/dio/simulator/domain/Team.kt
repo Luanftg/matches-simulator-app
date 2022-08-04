@@ -11,6 +11,6 @@ data class Team (
     @SerializedName("forca")
     val stars: Int,
     @SerializedName("imagem")
-    val imagem: String,
+    val image: String,
     var score: Int?
 ) :Parcelable

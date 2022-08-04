@@ -39,21 +39,22 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
     public void onBindViewHolder(@NonNull MatchesAdapter.ViewHolder holder, int position) {
         Match match = matches.get(position);
         Context context = holder.itemView.getContext();
+
         //Adapta os dados da partida (recuperada da API) para o nosso layout.
-        Glide.with(context).load(match.getHomeTeam().getImagem()).circleCrop().into(holder.binding.ivHomeTeam);
+        Glide.with(context).load(match.getHomeTeam().getImage()).circleCrop().into(holder.binding.ivHomeTeam);
         holder.binding.tvHomeTeamName.setText(match.getHomeTeam().getName());
-        if(match.getHomeTeam().getScore() != null) {
+        if (match.getHomeTeam().getScore() != null) {
             holder.binding.tvHomeTeamScore.setText(String.valueOf(match.getHomeTeam().getScore()));
         }
-        Glide.with(context).load(match.getAwayTeam().getImagem()).circleCrop().into(holder.binding.ivAwayTeam);
+        Glide.with(context).load(match.getAwayTeam().getImage()).circleCrop().into(holder.binding.ivAwayTeam);
         holder.binding.ivAwayTeamName.setText(match.getAwayTeam().getName());
-        if(match.getAwayTeam().getScore() != null) {
+        if (match.getAwayTeam().getScore() != null) {
             holder.binding.tvAwayTeamScore.setText(String.valueOf(match.getAwayTeam().getScore()));
         }
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra(DetailActivity.Extras.MATCH , match);
+            intent.putExtra(DetailActivity.Extras.MATCH, match);
             context.startActivity(intent);
         });
 
